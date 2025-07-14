@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './OrderPage.css';
 
+// API Base URL - Change this to your deployed backend URL
+const API_BASE_URL = 'https://change-your-avatar-prathamesh4949-f.vercel.app';
+
 const OrderPage = () => {
   const navigate = useNavigate();
   const [orders, setOrders] = useState([]);
@@ -21,7 +24,7 @@ const OrderPage = () => {
       }
 
       try {
-        const response = await fetch('http://localhost:5000/api/orders', {
+        const response = await fetch(`${API_BASE_URL}/api/orders`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -67,7 +70,7 @@ const OrderPage = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:5000/api/orders/${orderId}`, {
+      const response = await fetch(`${API_BASE_URL}/api/orders/${orderId}`, {
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${token}`,
