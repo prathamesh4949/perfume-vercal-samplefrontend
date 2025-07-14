@@ -4,6 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import { loadStripe } from '@stripe/stripe-js';
 import './CheckoutPage.css';
 
+// API Base URL - Change this to your deployed backend URL
+const API_BASE_URL = 'https://change-your-avatar-prathamesh4949-f.vercel.app';
+
 console.log('Stripe Publishable Key:', process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
 
 const STRIPE_PUBLISHABLE_KEY = process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY || 
@@ -67,7 +70,7 @@ const CheckoutPage = () => {
     }
 
     try {
-      const cartResponse = await fetch('http://localhost:5000/api/cart/sync', {
+      const cartResponse = await fetch(`${API_BASE_URL}/api/cart/sync`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -81,7 +84,7 @@ const CheckoutPage = () => {
         throw new Error(errorData.message || 'Failed to sync cart with backend');
       }
 
-      const response = await fetch('http://localhost:5000/api/payment/create-checkout-session', {
+      const response = await fetch(`${API_BASE_URL}/api/payment/create-checkout-session`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ items: cart, user }),
