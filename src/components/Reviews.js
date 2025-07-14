@@ -6,13 +6,13 @@ const Reviews = ({ productId }) => {
   const [form, setForm] = useState({ user: '', comment: '', rating: 5 });
 
   useEffect(() => {
-    axios.get(`change-your-avatar-prathamesh4949-f.vercel.app/api/reviews/${productId}`)
+    axios.get(`https://change-your-avatar-prathamesh4949-f.vercel.app/api/reviews/${productId}`)
       .then(res => setReviews(res.data));
   }, [productId]);
 
   const handleSubmit = e => {
     e.preventDefault();
-    axios.post(change-your-avatar-prathamesh4949-f.vercel.app/api/reviews/${productId}`, form)
+    axios.post(`https://change-your-avatar-prathamesh4949-f.vercel.app/api/reviews/${productId}`, form)
       .then(res => setReviews([...reviews, res.data]));
   };
 
