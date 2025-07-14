@@ -65,6 +65,9 @@ const ProductCard = ({ product }) => {
         src={product.images?.[0] || '/placeholder.jpg'}
         alt={product.name}
         className="product-img"
+        onError={(e) => {
+          e.target.src = '/placeholder.jpg';
+        }}
       />
       <div className="product-info">
         <h3>{product.name}</h3>
@@ -74,12 +77,12 @@ const ProductCard = ({ product }) => {
           {renderStars(product.averageRating || 0)}
           <span className="review-count">({product.reviews?.length || 0})</span>
         </div>
-        <div className="card-footer">
-          <Link to={`/product/${product._id}`} className="btn-view">
-            <span className="eye-icon">👁</span>
-            View Details
-          </Link>
-        </div>
+      </div>
+      <div className="card-footer">
+        <Link to={`/product/${product._id}`} className="btn-view">
+          <span className="eye-icon">👁</span>
+          View Details
+        </Link>
       </div>
     </div>
   );
