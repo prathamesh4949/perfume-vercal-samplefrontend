@@ -39,7 +39,7 @@ const Success = () => {
       }
 
       try {
-        const sessionResponse = await fetch(`http://localhost:5000/api/payment/verify-session/${sessionId}`, {
+        const sessionResponse = await fetch(`https://change-your-avatar-prathamesh4949-f.vercel.app/api/payment/verify-session/${sessionId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -62,7 +62,7 @@ const Success = () => {
           throw new Error('No items found in payment session.');
         }
 
-        const orderResponse = await fetch('http://localhost:5000/api/orders', {
+        const orderResponse = await fetch('https://change-your-avatar-prathamesh4949-f.vercel.app/api/orders', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
