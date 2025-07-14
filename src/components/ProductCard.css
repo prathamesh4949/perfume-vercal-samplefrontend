@@ -162,6 +162,7 @@
 .review-stars {
   display: flex;
   gap: 2px;
+  align-items: center;
   align-self: flex-start; /* Align with price on the left */
   margin-bottom: 12px; /* Space below stars */
   padding: 4px 8px; /* Padding for background */
@@ -177,29 +178,43 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
+.star-container {
+  position: relative;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+}
+
 .star {
-  font-size: 14px; /* Slightly smaller for better fit */
-  transition: transform 0.3s ease, text-shadow 0.3s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  fill: #ccc;
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
 
 .star.filled {
-  color: #e91e63;
-  text-shadow: 0 0 6px rgba(233, 30, 99, 0.5); /* Pink glow */
-}
-
-.star.half {
-  color: #e91e63;
-  opacity: 0.6;
-  text-shadow: 0 0 4px rgba(233, 30, 99, 0.3);
+  fill: #e91e63;
+  filter: drop-shadow(0 0 3px rgba(233, 30, 99, 0.5));
 }
 
 .star.empty {
-  color: #ccc;
+  fill: #ccc;
 }
 
-.star:hover {
-  transform: scale(1.1); /* Reduced scaling to fit better */
-  text-shadow: 0 0 8px rgba(212, 175, 55, 0.6); /* Gold glow on hover */
+.star-container:hover .star {
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 4px rgba(212, 175, 55, 0.6));
+}
+
+.review-count {
+  font-size: 0.8rem;
+  color: #666;
+  margin-left: 4px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
 }
 
 .card-footer {
@@ -310,12 +325,22 @@
     padding: 15px;
   }
 
+  .star-container {
+    width: 14px;
+    height: 14px;
+  }
+
   .star {
-    font-size: 12px; /* Smaller stars on mobile */
+    width: 14px;
+    height: 14px;
   }
 
   .review-stars {
     padding: 3px 6px; /* Adjusted padding for smaller screens */
+  }
+
+  .review-count {
+    font-size: 0.7rem;
   }
 
   .price {
