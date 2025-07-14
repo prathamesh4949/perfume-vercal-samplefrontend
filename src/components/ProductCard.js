@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// Note: Remove the ProductCard.css import since we're using the grid layout CSS
-// import './ProductCard.css';
+import './ProductCard.css';
 
 const ProductCard = ({ product }) => {
   // Function to render stars based on rating
