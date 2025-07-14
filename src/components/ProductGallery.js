@@ -14,16 +14,18 @@ const ProductGallery = () => {
       try {
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 5000);
-
-        const response = await fetch('http://localhost:5000/api/products', {
+        
+        const response = await fetch('https://change-your-avatar-prathamesh4949-f.vercel.app/api/products', {
           signal: controller.signal,
         });
+        
         clearTimeout(timeoutId);
-
+        
         if (!response.ok) {
           const errorData = await response.json().catch(() => ({}));
           throw new Error(errorData.error || `HTTP error! Status: ${response.status}`);
         }
+        
         const data = await response.json();
         setProducts(data);
         setFilteredProducts(data);
@@ -46,26 +48,30 @@ const ProductGallery = () => {
     setFilteredProducts(filtered);
   }, [searchTerm, products]);
 
-  if (loading) return <div className="gallery-loading">Loading products...</div>;
-  if (error) return <div className="gallery-error">Error: {error}</div>;
+  if (loading) return <div className="loading">Loading products...</div>;
+  if (error) return <div className="error">Error: {error}</div>;
 
   return (
-    <div className="gallery-wrapper">
-      <div className="search-bar">
+    <div className="product-gallery">
+      <div className="search-container">
         <input
           type="text"
-          placeholder="Search perfumes by name or brand..."
+          placeholder="Search perfumes..."
           value={searchTerm}
-          onChange={e => setSearchTerm(e.target.value)}
+          onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
-      <div className="gallery">
+      
+      <div className="products-grid">
         {filteredProducts.length > 0 ? (
           filteredProducts.map(product => (
-            <ProductCard key={product._id} product={product} />
+            <ProductCard
+              key={product.id}
+              product={product}
+            />
           ))
         ) : (
-          <p className="no-results">No perfumes found.</p>
+          <div className="no-products">No perfumes found.</div>
         )}
       </div>
     </div>
