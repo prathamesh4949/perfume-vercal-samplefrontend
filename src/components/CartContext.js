@@ -1,5 +1,8 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
+// API Base URL - Change this to your deployed backend URL
+const API_BASE_URL = 'https://change-your-avatar-prathamesh4949-f.vercel.app';
+
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
@@ -26,7 +29,7 @@ export const CartProvider = ({ children }) => {
       try {
         const token = localStorage.getItem('token');
         console.log('Fetching cart with token:', token);
-        const response = await fetch('http://localhost:5000/api/cart', {
+        const response = await fetch(`${API_BASE_URL}/api/cart`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -100,7 +103,7 @@ export const CartProvider = ({ children }) => {
         }
         console.log('Making API call to add to cart with token:', token);
         console.log('API request body:', JSON.stringify({ productId: product._id, quantity: 1 }));
-        const response = await fetch('http://localhost:5000/api/cart/add', {
+        const response = await fetch(`${API_BASE_URL}/api/cart/add`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -171,7 +174,7 @@ export const CartProvider = ({ children }) => {
     if (user) {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch('http://localhost:5000/api/cart/update', {
+        const response = await fetch(`${API_BASE_URL}/api/cart/update`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -221,7 +224,7 @@ export const CartProvider = ({ children }) => {
     if (user) {
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch('http://localhost:5000/api/cart/remove', {
+        const response = await fetch(`${API_BASE_URL}/api/cart/remove`, {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',
@@ -281,7 +284,7 @@ export const CartProvider = ({ children }) => {
           console.error('No token found for clearing cart');
           return;
         }
-        const response = await fetch('http://localhost:5000/api/cart/clear', {
+        const response = await fetch(`${API_BASE_URL}/api/cart/clear`, {
           method: 'DELETE',
           headers: {
             Authorization: `Bearer ${token}`,
