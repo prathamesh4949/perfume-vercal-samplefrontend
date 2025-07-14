@@ -8,7 +8,7 @@ const ProductPage = () => {
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/products/${id}`)
+    axios.get(`https://change-your-avatar-prathamesh4949-f.vercel.app/api/products/${id}`)
       .then(res => setProduct(res.data));
   }, [id]);
 
