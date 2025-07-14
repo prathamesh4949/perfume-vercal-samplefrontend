@@ -6,7 +6,7 @@ const HomePage = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/products')
+    axios.get('https://change-your-avatar-prathamesh4949-f.vercel.app/api/products')
       .then(res => setProducts(res.data));
   }, []);
 
